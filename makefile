@@ -1,12 +1,15 @@
-default: 
-	g++ main.o -o main
+CFLAGS = -c -Wall -std=c++14
+EXENAME = atm
+CC = g++
+
+default: main.o
+	$(CC) main.o -o $(EXENAME)
 
 main.o: main.cpp
-	g++ -c main.cpp
-
+	$(CC) $(CFLAGS) main.cpp
 
 clean:
-	rm *.o main
+	rm *.o $(EXENAME)
 
 run:
-	./main
+	./$(EXENAME)
