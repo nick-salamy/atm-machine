@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "user.h"
 using namespace std;
 
 void showBalance(float bal) {
@@ -29,17 +30,25 @@ float withdraw(float bal) {
 int main()
 {
     string userName;
+    const int PASSWORD = 1111;
+    int userPin;
     int choice = 0;
     float balance = 0.00;
     cout << "Hello, Please enter your name" << endl;
     getline(cin, userName);
-    cout << "Welcome, " << userName << endl;
+    cout << "\nPlease enter user pin: ";
+    cin >> userPin;
+    while(userPin != PASSWORD){
+        cout << "\nIncorrect pin, please try again: ";
+        cin >> userPin;
+    }
+    cout << "\nWelcome, " << userName << endl;
     while(choice != 4 ) {
-        cout << "1. Balance\n" << "2. Deposit\n" << "3. Withdraw\n"
+        cout << "\n1. Balance\n" << "2. Deposit\n" << "3. Withdraw\n"
         << "4. Exit\n";
         cin >> choice;
         switch(choice) {
-            case 1: showBalance(balance);
+            case 1: //showBalance(balance);
             break;
 
             case 2: balance = addBalance(balance);
@@ -53,6 +62,7 @@ int main()
                         cin >> withdrawl;
                     }
                     balance -= withdrawl;*/
+                break;
         }
 
     }
