@@ -16,7 +16,7 @@ float addBalance(float bal){
     return bal;
 }
 
-float withdraw(float bal) {
+float addWithdraw(float bal) {
     float withdraw;
     cout << "Enter the amount you would like to withdraw: ";
     cin >> withdraw;
@@ -27,7 +27,43 @@ float withdraw(float bal) {
     return bal -= withdraw;
 }
 
-int main()
+int main() {
+    User userOne;
+    int pin, choice;
+    float balance;
+    string userName;
+    cout << "Enter user name: ";
+    cin >> userName;
+    cout << "Enter pin: ";
+    cin >> pin;
+    while(userName != userOne.getUserName()){
+        cout << "\nUser name is wrong. Please try again: ";
+        cin >> userName;
+    }
+    while(pin != userOne.getPin()){
+        cout << "\nWrong pin entered. Please try again: ";
+        cin >> pin;
+    }
+    while(choice != 4){
+        cout << "\n1. Balance\n" << "2. Deposit\n" << "3. Withdraw\n"
+        << "4. Exit\n";
+        cin >> choice;
+        switch(choice) {
+            case 1: userOne.getBalance();
+            break;
+
+            case 2: balance = addBalance(balance);
+                    userOne.setBalance(balance);
+                break;
+            case 3: balance = addWithdraw(balance);
+                    userOne.setBalance(balance);
+                break;
+        }
+    }
+}
+
+
+/*int main()
 {
     string userName;
     const int PASSWORD = 1111;
@@ -61,11 +97,11 @@ int main()
                         cout << "Withdraw is greater than balance. Balance is: " << balance << ". Please try again: ";
                         cin >> withdrawl;
                     }
-                    balance -= withdrawl;*/
+                    balance -= withdrawl;
                 break;
         }
 
     }
     return 0;
 
-}
+} */

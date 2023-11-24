@@ -10,10 +10,14 @@ class User {
     private:
         string userName;
         int pin;
+        float balance;
     public:
+        User();
         void setPin(int);
         void setUserName(std::string);
+        void setBalance(float);
         int getPin();
         string getUserName(); 
+        void getBalance();
 };
 #endif
