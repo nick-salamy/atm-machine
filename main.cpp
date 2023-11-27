@@ -28,10 +28,11 @@ float addWithdraw(float bal) {
 }
 
 int main() {
-    User userOne;
-    int pin, choice;
+    User userOne("Nick", 1111);
+    int pin, choice, newPin;
     float balance;
-    string userName;
+    string userName, newUser;
+    User users[10];
     cout << "Enter user name: ";
     cin >> userName;
     cout << "Enter pin: ";
@@ -44,9 +45,9 @@ int main() {
         cout << "\nWrong pin entered. Please try again: ";
         cin >> pin;
     }
-    while(choice != 4){
+    while(choice != 5){
         cout << "\n1. Balance\n" << "2. Deposit\n" << "3. Withdraw\n"
-        << "4. Exit\n";
+        << "4. Add New User\n" << "5. Quit\n";
         cin >> choice;
         switch(choice) {
             case 1: userOne.getBalance();
@@ -58,6 +59,14 @@ int main() {
             case 3: balance = addWithdraw(balance);
                     userOne.setBalance(balance);
                 break;
+            case 4: 
+                cout << "Enter user name: ";
+                cin >> newUser;
+                cout << "\nEnter user pin: ";
+                cin >> newPin;
+                User *addNewUser = new User(newUser, newPin);
+                users[1] = *addNewUser;
+                cout << users[1];
         }
     }
 }

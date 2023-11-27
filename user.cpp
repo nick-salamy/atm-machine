@@ -1,8 +1,12 @@
 #include "user.h"
-
 User::User(){
-    pin = 1111;
     userName = "Nick";
+    pin = 1111;
+    balance = 0.00;
+}
+User::User(string userName, int pin){
+    this->userName = userName;
+    this->pin = pin;
     balance = 0.00;
 }
 
