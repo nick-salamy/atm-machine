@@ -20,6 +20,9 @@ class User {
         int getPin();
         string getUserName(); 
         void getBalance();
-        ostream& operator<<(ostream, User);
+        friend ostream& operator<<(ostream& os, const User USER){
+            os << USER.userName << endl << USER.pin << endl;
+            return os;
+        }
 };
 #endif

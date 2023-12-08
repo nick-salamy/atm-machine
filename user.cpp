@@ -9,9 +9,6 @@ User::User(string userName, int pin){
     this->pin = pin;
     balance = 0.00;
 }
-User::ostream& operator<<(ostream& os, const User& USER){
-    os << USER.userName << endl << USER.pin;
-}
 
 void User::setPin(int pin) {
     this->pin = pin;

@@ -28,11 +28,13 @@ float addWithdraw(float bal) {
 }
 
 int main() {
+    int count = 1;
+    const int NUMUSER = 10;
     User userOne("Nick", 1111);
     int pin, choice, newPin;
     float balance;
     string userName, newUser;
-    User users[10];
+    User users[NUMUSER];
     cout << "Enter user name: ";
     cin >> userName;
     cout << "Enter pin: ";
@@ -65,8 +67,9 @@ int main() {
                 cout << "\nEnter user pin: ";
                 cin >> newPin;
                 User *addNewUser = new User(newUser, newPin);
-                users[1] = *addNewUser;
-                cout << users[1];
+                users[count] = *addNewUser;
+                count++;
+                
         }
     }
 }
