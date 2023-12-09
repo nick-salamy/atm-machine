@@ -28,13 +28,15 @@ float addWithdraw(float bal) {
 }
 
 int main() {
-    int count = 1;
     const int NUMUSER = 10;
+    // sets a default user
     User userOne("Nick", 1111);
-    int pin, choice, newPin;
+    int pin, choice, newPin, addedUserCount;
     float balance;
     string userName, newUser;
     User users[NUMUSER];
+    // assigns default user to the array of users
+    users[0] = userOne;
     cout << "Enter user name: ";
     cin >> userName;
     cout << "Enter pin: ";
@@ -62,58 +64,23 @@ int main() {
                     userOne.setBalance(balance);
                 break;
             case 4: 
-                cout << "Enter user name: ";
-                cin >> newUser;
-                cout << "\nEnter user pin: ";
-                cin >> newPin;
-                User *addNewUser = new User(newUser, newPin);
-                users[count] = *addNewUser;
-                count++;
-                
+                int usersToAdd;
+                cout << "How many users would you like to add? (less than 8 possible additions) ";
+                cin >> usersToAdd;
+                for(int i = 1; i <= usersToAdd; i++){
+                    cout << "\nEnter user name: ";
+                    cin >> newUser;
+                    cout << "Enter user pin: ";
+                    cin >> newPin;
+                    User *addNewUser = new User(newUser, newPin);
+                    users[i] = *addNewUser;
+                    delete addNewUser;
+                    addedUserCount++;
+                }
+                for(int i = 0; i <= addedUserCount; i++){
+                    cout << endl << users[i] << endl;
+                }
         }
-    }
-}
-
-
-/*int main()
-{
-    string userName;
-    const int PASSWORD = 1111;
-    int userPin;
-    int choice = 0;
-    float balance = 0.00;
-    cout << "Hello, Please enter your name" << endl;
-    getline(cin, userName);
-    cout << "\nPlease enter user pin: ";
-    cin >> userPin;
-    while(userPin != PASSWORD){
-        cout << "\nIncorrect pin, please try again: ";
-        cin >> userPin;
-    }
-    cout << "\nWelcome, " << userName << endl;
-    while(choice != 4 ) {
-        cout << "\n1. Balance\n" << "2. Deposit\n" << "3. Withdraw\n"
-        << "4. Exit\n";
-        cin >> choice;
-        switch(choice) {
-            case 1: //showBalance(balance);
-            break;
-
-            case 2: balance = addBalance(balance);
-                break;
-            case 3: balance = withdraw(balance);
-            
-            /*cout << "\nEnter the amount to withdraw: ";
-                    cin >> withdrawl;
-                    while(withdrawl > balance){
-                        cout << "Withdraw is greater than balance. Balance is: " << balance << ". Please try again: ";
-                        cin >> withdrawl;
-                    }
-                    balance -= withdrawl;
-                break;
-        }
-
     }
     return 0;
-
-} */
+}
