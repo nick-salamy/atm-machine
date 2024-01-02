@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "user.h"
 using namespace std;
@@ -28,6 +29,7 @@ float addWithdraw(float bal) {
 }
 
 int main() {
+    fstream UserFile;
     const int NUMUSER = 10;
     // sets a default user
     User userOne("Nick", 1111);
@@ -72,14 +74,20 @@ int main() {
                     cin >> newUser;
                     cout << "Enter user pin: ";
                     cin >> newPin;
-                    User *addNewUser = new User(newUser, newPin);
+                    UserFile.open("users.txt", ios::app);
+                    if(UserFile.is_open()){
+                    UserFile << newUser << " " << newPin << endl;
+                    UserFile.close();
+                    }
+                    else{
+                        cout << "cannot find file";
+                    }
+                    /*User *addNewUser = new User(newUser, newPin);
                     users[i] = *addNewUser;
                     delete addNewUser;
-                    addedUserCount++;
+                    addedUserCount++;*/
                 }
-                for(int i = 0; i <= addedUserCount; i++){
-                    cout << endl << users[i] << endl;
-                }
+                break;
         }
     }
     return 0;
