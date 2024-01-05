@@ -2,38 +2,15 @@
 #include <fstream>
 #include <string>
 #include "user.h"
+#include "functions.h"
 using namespace std;
-
-void showBalance(float bal) {
-    cout << "Your balance is: " << bal << endl;
-    return;
-}
-
-float addBalance(float bal){
-    float add;
-    cout << "Enter the amount you would like to deposit: ";
-    cin >> add;
-    bal += add;
-    return bal;
-}
-
-float addWithdraw(float bal) {
-    float withdraw;
-    cout << "Enter the amount you would like to withdraw: ";
-    cin >> withdraw;
-    while(withdraw > bal){
-        cout << "Insufficient Funds. Current balance is: " << bal << ". Enter new withdraw ";
-        cin >> withdraw;
-    }
-    return bal -= withdraw;
-}
 
 int main() {
     fstream UserFile;
     const int NUMUSER = 10;
     // sets a default user
     User userOne("Nick", 1111);
-    int pin, choice, newPin, addedUserCount;
+    int pin, choice;
     float balance;
     string userName, newUser;
     User users[NUMUSER];
@@ -66,29 +43,16 @@ int main() {
                     userOne.setBalance(balance);
                 break;
             case 4: 
-                int usersToAdd;
-                cout << "How many users would you like to add? (less than 8 possible additions) ";
-                cin >> usersToAdd;
-                for(int i = 1; i <= usersToAdd; i++){
-                    cout << "\nEnter user name: ";
-                    cin >> newUser;
-                    cout << "Enter user pin: ";
-                    cin >> newPin;
-                    UserFile.open("users.txt", ios::app);
-                    if(UserFile.is_open()){
-                    UserFile << newUser << " " << newPin << endl;
-                    UserFile.close();
-                    }
-                    else{
-                        cout << "cannot find file";
-                    }
-                    /*User *addNewUser = new User(newUser, newPin);
-                    users[i] = *addNewUser;
-                    delete addNewUser;
-                    addedUserCount++;*/
-                }
+                addUsersToFile();
                 break;
+            case 5:
+                cout << "Thank you, Goodbye.\n";
+                break;
+            default:
+                cout << "\nInvalid Number. Please try again: ";
+                break;
+            }
         }
+        return 0;
     }
-    return 0;
-}
+
